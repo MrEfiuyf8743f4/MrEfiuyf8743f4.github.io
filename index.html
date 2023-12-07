@@ -7,12 +7,22 @@
         }
         .centerxx {
             position: relative;
-            left: 10px;
+            left: 45%;
         }
     </style>
 </head>
 <body>
     <div class="centerxx">
-        <p>Please Enter Password</p>
-    </div>
+    <p>Please Enter Password</p>
+    <input type="password" placeholder="Password Here" width="100px" style="text-align: center;">
+    <br>
+    <button id="buttonx">Enter</button>
+
+</div>
+<script>
+    document.getElementById('buttonx').addEventListener('click', function () {
+        var x = prompt('Password?')
+        document.cookie = 'password=' + x + '; '
+    })
+</script>
 </body>
