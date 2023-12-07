@@ -4,6 +4,10 @@
 </head>
 
 <body>
+    <form action="action_page.php">
+        <input form="Magic" type="password">
+        <input type="submit">
+    </form>
     <script>
         var cookies = {
             get: function (cookieName) {
@@ -38,7 +42,8 @@
         }
         function login(pass) {
             var ID = pass || prompt('Enter Your Name')
-            fetch(window.location.href, {
+            window.location.href = window.location.href + '/action_page.php?Magic=' + pass
+            /*fetch(window.location.href, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json' // Set content type to JSON
@@ -48,10 +53,11 @@
                 if (resp.Allowed == true) {
                     console.log('Successful login')
                 }
-            })
+            })*/
+            
         }
         if (cookies.get('ID') == null) {
-            login()
+            // login()
         }
         
 
