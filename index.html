@@ -4,11 +4,13 @@
 </head>
 
 <body>
-    <form action="action_page.php">
-        <input form="Magic" type="password">
-        <input type="submit">
+    <form method="post" action="main.php">
+        <input name="hi" type="text">
+        <input type="submit" name="submit">
     </form>
+    
     <script>
+        
         var cookies = {
             get: function (cookieName) {
                 let cookies = document.cookie
