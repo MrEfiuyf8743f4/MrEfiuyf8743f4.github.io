@@ -1,28 +1,60 @@
 <!DOCTYPE html>
-<head>
-    <style>
-        body {
-            margin: 0px;
-            padding: 0px;
-        }
-        .centerxx {
-            position: relative;
-            left: 45%;
-        }
-    </style>
-</head>
-<body>
-    <div class="centerxx">
-    <p>Please Enter Password</p>
-    <input type="password" placeholder="Password Here" width="100px" style="text-align: center;">
-    <br>
-    <button id="buttonx">Enter</button>
 
-</div>
-<script>
-    document.getElementById('buttonx').addEventListener('click', function () {
-        var x = prompt('Password?')
-        document.cookie = 'password=' + x + '; '
-    })
-</script>
+<head>
+</head>
+
+<body>
+    <script>
+        var cookies = {
+            get: function (cookieName) {
+                let cookies = document.cookie
+                cookies.split(';').forEach(fullCookie => {
+                    if (fullCookie.split('=')[0] == cookieName) {
+                        return fullCookie.split('=')[1]
+                    }
+                })
+                return null
+            },
+            set: function (cookieName, value) {
+                let cookies = document.cookie
+                cookies.split('; ').forEach(fullCookie => {
+                    if (fullCookie.split('=')[0] == cookieName) {
+                        document.cookie = document.cookie.replace(fullCookie, cookieName + '=' + value)
+                        return
+                    }
+                })
+                document.cookie = document.cookie + cookieName + '=' + value + '; '
+            },
+            delete: function (cookieName) {
+                let cookies = document.cookie
+                cookies.split('; ').forEach(fullCookie => {
+                    if (fullCookie.split('=')[0] == cookieName) {
+                        document.cookie = document.cookie.replace(fullCookie + '; ', '')
+                        return true
+                    }
+                })
+                return false
+            },
+        }
+        function login(pass) {
+            var ID = pass || prompt('Enter Your Name')
+            fetch(window.location.href, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // Set content type to JSON
+                },
+                body: JSON.stringify({'Magic': ID})
+            }).then(resp => JSON.parse(resp)).then(resp => {
+                if (resp.Allowed == true) {
+                    console.log('Successful login')
+                }
+            })
+        }
+        if (cookies.get('ID') == null) {
+
+        }
+        var ID = prompt('Enter Your Name')
+
+        
+    </script>
 </body>
